@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const funnel = require('broccoli-funnel');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -10,18 +11,30 @@ module.exports = function (defaults) {
     },
   });
 
-  // Use `app.import` to add additional libraries to the generated
-  // output files.
-  //
-  // If you need to use different assets in different
-  // environments, specify an object as the first parameter. That
-  // object's keys should be the environment name and the values
-  // should be the asset to use in that environment.
-  //
-  // If the library that you are including contains AMD or ES6
-  // modules that you would like to import into your application
-  // please specify an object with the list of modules as keys
-  // along with the exports of each module as its value.
+  app.import("vendor/bootstrap/css/bootstrap.min.css");
+  app.import("vendor/css/bootstrap-select.min.css");
+  app.import("vendor/css/tagsinput.css");
+  app.import("vendor/css/bootstrap-datepicker.css");
+  app.import("vendor/css/styles.css");
+
+  app.import("vendor/bootstrap/js/jquery-3.5.1.slim.min.js");
+  app.import("vendor/js/popper.min.js");
+  app.import("vendor/bootstrap/js/bootstrap.bundle.min.js");
+  app.import("vendor/js/tagsinput.js");
+  app.import("vendor/js/bootstrap-file.js");
+  app.import("vendor/js/bootstrap-datepicker.min.js");
+  app.import("vendor/js/bootstrap-datepicker.ru.min.js");
+  app.import("vendor/js/bootstrap-select.min.js");
+
+  // const css = funnel("node_modules/bootstrap/dist/css", {
+  //   include: ["*.min.css"],
+  //   destDir: "bootstrap/css"
+  // });
+
+  // const js = funnel("node_modules/bootstrap/dist/js", {
+  //   include: ["*.js"],
+  //   destDir: "bootstrap/js"
+  // });
 
   return app.toTree();
 };
